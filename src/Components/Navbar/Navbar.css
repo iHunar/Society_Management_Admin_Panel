@@ -1,0 +1,73 @@
+.MuiAppBar-colorPrimary {
+  color: rgb(26, 25, 25) !important;
+  background-color: white !important;
+}
+
+._profile_image {
+  width: 30px;
+  height: 30px;
+  border-radius: 100px;
+  cursor: pointer;
+}
+
+.header_profile_main {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  /* background-color: red; */
+  width: 100%;
+}
+.NavbarPage_Logo{
+    width: 100px;
+    height: 70px;
+    display: flex;
+    justify-content: center;
+    align-self: center;
+    align-items: center;
+    margin: 0 auto;
+    margin-top: -50px;
+    margin-bottom: 50px;
+}
+._drawer_icon {
+    color: #3C1874;
+    margin-right: 10px;
+    
+  }
+  ._drawer_icon:focus {
+    color: #3C1874;
+    margin-right: 10px;
+   
+  }
+  ._drawerPageLInk {
+    /* margin-left: 10px; */
+    color: rgb(29, 28, 28);
+    font-size: 15px;
+    font-weight: bold;
+  }
+  ._drawerPageLInk:focus {
+    /* margin-left: 10px; */
+    color: #3C1874;
+    font-size: 15px;
+    font-weight: bold;
+  }
+  ._drawerlougout_icon{
+    color: red;
+    margin-right: 10px;
+  }
+  ._drawerPageLInkLogout{
+    color: red;
+    font-size: 15px;
+    font-weight: bold;
+  }
+
+  .MuiBadge-colorSecondary {
+    color: #fff;
+    border: 1px solid white !important;
+    font-weight: bold !important;
+}
+.projec_tittle{
+  color: #fff;
+  font-weight: bold;
+  font-size: 15px;
+}

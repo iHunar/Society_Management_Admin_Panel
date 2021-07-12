@@ -1,0 +1,50 @@
+.login_main {
+  width: 40%;
+  border-radius: 10px;
+  padding: 50px !important;
+ border: 1px solid gray;
+}
+.link_none {
+  text-decoration: none;
+}
+.main {
+  display: flex;
+  align-self: center;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+
+}
+
+.MuiButton-outlined {
+  border: 1px solid rgba(0, 0, 0, 0.23);
+  padding: 15.5px 14px !important;
+}
+.login_heading {
+  text-align: center;
+  font-size: 40px;
+  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.sing_btn_text {
+  font-weight: bold !important;
+}
+.loginPage_Logo {
+  width: 150px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-self: center;
+  align-items: center;
+  margin: 0 auto;
+}
+@media only screen and (max-width: 600px) {
+  .login_main {
+    margin-top: 25vh !important;
+    width: 90%;
+    border-radius: 10px;
+    padding: 50px !important;
+    background-color: white;
+  }
+}

@@ -1,0 +1,34 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+.myAccoundTilte{
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+.myAccounttitleText{
+    font-family: "Lato", sans-serif !important;
+font-size: 20px;
+font-weight: bold;
+}
+
+.myAccounttitleText2{
+    font-family: "Lato", sans-serif !important;
+    font-size: 20px;
+}
+
+@media only screen and (max-width: 600px) {
+    .myAccoundTilte{
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+    }
+    .myAccounttitleText{
+        font-family: "Lato", sans-serif !important;
+    font-size: 12px;
+    font-weight: bold;
+    }
+    .myAccounttitleText2{
+        font-family: "Lato", sans-serif !important;
+        font-size: 12px;
+    }
+  }

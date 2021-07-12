@@ -1,0 +1,166 @@
+@import url("https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap");
+
+.required_star {
+  color: red;
+  margin-left: 5px;
+  font-size: 20px;
+}
+
+.request_type_heading_main {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: -5px;
+}
+
+.request_type_heading {
+  font-family: "Lato", sans-serif !important;
+  font-weight: bold;
+  font-size: 20px;
+}
+
+
+table {
+  border: 1px solid #ccc;
+  border-collapse: collapse;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  table-layout: fixed;
+}
+
+table caption {
+  font-size: 1.5em;
+  margin: .5em 0 .75em;
+}
+
+table tr {
+  background-color: #f8f8f8;
+  border: 1px solid #ddd;
+  padding: .35em;
+}
+
+table th,
+table td {
+  padding: .625em;
+  text-align: center;
+}
+
+table th {
+  font-size: .85em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+tr:hover{
+  background-color: rgb(158 158 158 / 16%);
+}
+@media screen and (max-width: 600px) {
+  table {
+    border: 0;
+  }
+
+  table caption {
+    font-size: 1.3em;
+  }
+  
+  table thead {
+    border: none;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+    padding: 0;
+    position: absolute;
+    width: 1px;
+  }
+  
+  table tr {
+    border-bottom: 3px solid #ddd;
+    display: block;
+    margin-bottom: .625em;
+  }
+  
+  table td {
+    border-bottom: 1px solid #ddd;
+    display: block;
+    font-size: .8em;
+    text-align: left;
+  }
+  
+  table td::before {
+    /*
+    * aria-label has no advantage, it won't be read inside a table
+    content: attr(aria-label);
+    */
+    content: attr(data-label);
+    float: left;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  table td:last-child {
+    border-bottom: 0;
+  }
+}
+.WhatsAppImg{
+  width: 100px;
+  height: 50px;
+}
+@media only screen and (max-width: 600px) {
+  .request_type_heading_main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    margin-top: -5px;
+  }
+}
+
+
+.reques_type_title_main{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+}
+
+.reques_type_title{
+  font-family: "Lato", sans-serif !important;
+  font-size: 20px;
+  font-weight: bold;
+  width: 40%;
+}
+.reques_type_title2{
+  font-family: "Lato", sans-serif !important;
+  font-size: 20px;
+  width: 60%;
+}
+.WhatsAppImgDes{
+  width: 100%;
+  height: auto;
+  max-height: 80vh;
+  margin-top: 30px;
+}
+.request_details_conf_main{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.request_details_conf{
+  width: 45%;
+  margin-top: 50px;
+}
+@media (max-width: 800px) {
+  .reques_type_title_main{
+    display: flex;
+    flex-direction: column;
+  }
+  .reques_type_title{
+    width: 100%;
+  }
+  .reques_type_title2{
+    width: 100%;
+  }
+}
+
