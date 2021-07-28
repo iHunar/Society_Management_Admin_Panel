@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Button from "@material-ui/core/Button";
@@ -14,6 +14,10 @@ import Paper from "@material-ui/core/Paper";
 import Amplify, { Auth } from "aws-amplify";
 import awsconfig from "./../../aws-exports";
 import { Link } from "react-router-dom";
+import { Firebase } from "./../../config/firebase/firebase";
+import Spanner from "./../../Components/spinner/spinner";
+
+const database = Firebase.database().ref("/");
 Amplify.configure(awsconfig);
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,20 +39,52 @@ function Alert(props) {
 
 export default function Signup(props) {
   const classes = useStyles();
-  const [email, setEmail] = React.useState("");
-  const [password, setPassword] = React.useState("");
   const [selectLoginAs, setSelectLoginAs] = React.useState("");
   const [open, setOpen] = React.useState(false);
   const [message, setMessage] = React.useState("");
   const [messageCatogary, setMessageCatory] = React.useState("");
-  const handleEmail = (event) => {
-    setEmail(event.target.value);
+  const [isLoader, setisLoader] = React.useState(false);
+  const [inputValues, setInputValues] = useState({
+    email: "",
+    password: "",
+    userAs: "",
+  });
+  const handle_change = (e) => {
+    setInputValues({
+      ...inputValues,
+      [e.target.name]: e.target.value,
+    });
   };
   const HandleSignUp = async () => {
-    props.history.push('/Home')
+    setisLoader(true)
+    Firebase.auth()
+      .createUserWithEmailAndPassword(inputValues.email, inputValues.password)
+      .then((userCredential) => {
+        setisLoader(false)
+        var user = userCredential.user;
+        console.log("========>>>========", user.uid);
+        database
+          .child("Admins" + "/" + user.uid)
+          .set(inputValues)
+          .then((res) => {
+            setInputValues({
+              email: "",
+              password: "",
+            });
+            props.history.push("/Home");
+            console.log('okay')
+          })
+          .catch((err) => {
+            setMessage(err.message);
+          });
+      })
+      .catch((error) => {
+        var errorMessage = error.message;
+        console.log(errorMessage);
+      });
   };
   const handlePassword = (event) => {
-    setPassword(event.target.value);
+    setInputValues.password(event.target.value);
   };
   const handleChange = (event) => {
     setSelectLoginAs(event.target.value);
@@ -64,29 +100,7 @@ export default function Signup(props) {
     }
     setOpen(false);
   };
-  const signIn = () => {
-    if (email === "") {
-      setMessageCatory("error");
-      console.log(setMessageCatory);
-      setMessage("Type Correct Email Address || Password");
-      handleClick();
-    } else if (password === "") {
-      setMessageCatory("error");
-      setMessage("Type Correct Email Address || Password");
-      handleClick();
-    } else if (selectLoginAs === "") {
-      setMessageCatory("error");
-      setMessage("Select Login As");
-      handleClick();
-    } else {
-      setMessageCatory("success");
-      setMessage("Sucessfully Login !");
-      handleClick();
-      console.log(email);
-      console.log(password);
-      console.log(selectLoginAs);
-    }
-  };
+
   console.log(selectLoginAs);
   return (
     <div className="main">
@@ -105,8 +119,9 @@ export default function Signup(props) {
           type="email"
           autoComplete="email-address"
           className="login_email_input"
-          value={email}
-          onChange={handleEmail}
+          value={inputValues.email}
+          onChange={handle_change}
+          name="email"
         />
         <br />
         <br />
@@ -121,8 +136,9 @@ export default function Signup(props) {
           type="password"
           autoComplete="current-password"
           className="login_pasword_input"
-          value={password}
-          onChange={handlePassword}
+          value={inputValues.password}
+          onChange={handle_change}
+          name="password"
         />
         <br />
         <br />
@@ -139,9 +155,10 @@ export default function Signup(props) {
           <Select
             labelId="demo-simple-select-outlined-label"
             id="demo-simple-select-outlined"
-            value={selectLoginAs}
-            onChange={handleChange}
+            value={inputValues.userAs}
+            onChange={handle_change}
             label="Select Login As"
+            name="userAs"
           >
             <MenuItem value="Board Members" className="login_dropdwon_value">
               Board Members
@@ -164,9 +181,10 @@ export default function Signup(props) {
           color="primary"
           fullWidth
           className="sing_btn_text"
-          onClick={() => HandleSignUp()}
+          
+          onClick={() => isLoader ? null : HandleSignUp() }
         >
-          Sign UP
+          {isLoader === false ? <span> Sign UP</span> : <Spanner />}
         </Button>
 
         <div>

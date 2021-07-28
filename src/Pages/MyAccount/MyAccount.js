@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     },
 }));
-function MyAccount() {
+function MyAccount(props) {
     const [selectCategory, setSelectCategory] = React.useState("");
     const [selectEvents, setSearchEvents] = React.useState("");
     const [open, setOpen] = React.useState(false);
@@ -73,7 +73,7 @@ function MyAccount() {
     return (
         <div className="home_page_main">
             {/* ===========================> <=========================== */}
-            <Navbar>
+            <Navbar path={props.history}>
                 {/* ===========================> <=========================== */}
                 <div className="Announcement_header_main">
                     <div className="Announcement_header_icon_main">

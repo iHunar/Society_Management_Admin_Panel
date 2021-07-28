@@ -1,0 +1,80 @@
+.AnnouncementTable_main {
+
+    margin-bottom: 10px;
+  }
+  .AnnouncementTable_tr {
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    padding: .35em;
+  }
+  
+ .AnnouncementTable_td{
+    padding: .625em;
+    text-align: center;
+  }
+  .AnnouncementTable_td2{
+    padding: .625em;
+    text-align: left;
+    
+  }
+  .AnnouncementTable_th{
+    padding: .625em;
+    text-align: center;
+  }
+  .AnnouncementTable_th2{
+    padding: .625em;
+    text-align: left;
+  }
+  .AnnouncementTable_th {
+    font-size: .85em;
+    letter-spacing: .1em;
+    text-transform: uppercase;
+  }
+  .title_des{
+    text-align: justify;
+    color: #3C1874 !important;
+
+}
+  @media screen and (max-width: 600px) {
+    .AnnouncementTable_main {
+      border: 0;
+    }
+  
+    .AnnouncementTable_thead {
+      border: none;
+      clip: rect(0 0 0 0);
+      height: 1px;
+      margin: -1px;
+      overflow: hidden;
+      padding: 0;
+      position: absolute;
+      width: 1px;
+    }
+    
+    .AnnouncementTable_tr{
+      border-bottom: 3px solid #ddd;
+      display: block;
+      margin-bottom: .625em;
+    }
+    .AnnouncementTable_td {
+      border-bottom: 1px solid #ddd;
+      display: block;
+      font-size: .8em;
+      text-align: right;
+    }
+
+    .AnnouncementTable_td::before {
+      /*
+      * aria-label has no advantage, it won't be read inside a table
+      content: attr(aria-label);
+      */
+      content: attr(data-label);
+      float: left;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+    
+   .AnnouncementTable_td:last-child {
+      border-bottom: 0;
+    }
+  }

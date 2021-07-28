@@ -21,6 +21,7 @@ import Survey from './../Pages/Survey/Survey';
 import UserGuide from './../Pages/UserGuide/UserGuide';
 import ServiceRequestDetails from './../Pages/ServiceRequest/ServiceRequestDetails';
 import AmenityBookingDetails from './../Pages/AmenityBooking/AmenityBookingDetails'
+import AllUsers from './../Pages/allUsers/allUsers'
 import Signup from './../Pages/signup/signup'
 class Router extends Component {
   render() {
@@ -44,6 +45,8 @@ class Router extends Component {
             <Route path="/UserGuide" component={UserGuide} />
             <Route path="/ServiceRequestDetails" component={ServiceRequestDetails} />
             <Route path="/AmenityBookingDetails" component={AmenityBookingDetails} />
+            <Route path="/AllUsers" component={AllUsers} />
+
             <Redirect to="/" />
           </Switch>
         </div>

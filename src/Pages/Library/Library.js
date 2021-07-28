@@ -37,7 +37,7 @@ const useStyles = makeStyles((theme) => ({
         padding: theme.spacing(2),
     },
 }));
-function Library() {
+function Library(props) {
     const [selectCategory, setSelectCategory] = React.useState("");
     const [selectCategory2, setSelectCategory2] = React.useState("");
     const [selectEvents, setSearchEvents] = React.useState("");
@@ -87,7 +87,7 @@ function Library() {
     return (
         <div className="home_page_main">
             {/* ===========================> <=========================== */}
-            <Navbar>
+            <Navbar path={props.history}>
                 {/* ===========================> <=========================== */}
                 <div className="Announcement_header_main">
                     <div className="Announcement_header_icon_main">

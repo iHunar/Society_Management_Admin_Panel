@@ -35,12 +35,12 @@ const useStyles = makeStyles((theme) => ({
         display: 'none',
     },
 }));
-function ServiceRequestDetails() {
+function ServiceRequestDetails(props) {
     const classes = useStyles();
     return (
         <div className="home_page_main">
             {/* ===========================> <=========================== */}
-            <Navbar>
+            <Navbar path={props.history}>
                 {/* ===========================> <=========================== */}
                 <div className="Announcement_header_main">
                     <Link to="/ServiceRequest" className="link_none">

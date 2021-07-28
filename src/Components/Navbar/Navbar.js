@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import AppBar from "@material-ui/core/AppBar";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -12,7 +12,7 @@ import Toolbar from "@material-ui/core/Toolbar";
 import Typography from "@material-ui/core/Typography";
 import { makeStyles, useTheme } from "@material-ui/core/styles";
 import "./Navbar.css";
-import ProfileImg from "./../../img/profile.jpg";
+import ProfileImg from "./../../img/upload_profile.png";
 import Popover from "@material-ui/core/Popover";
 import MenuItem from "@material-ui/core/MenuItem";
 import Badge from "@material-ui/core/Badge";
@@ -22,7 +22,7 @@ import Logo from "./../../img/logo.png";
 import { FaHome } from "react-icons/fa";
 import { MdEventNote, MdLocalLibrary } from "react-icons/md";
 import { FiGitPullRequest } from "react-icons/fi";
-import { FaCalendarAlt } from "react-icons/fa";
+import { FaCalendarAlt,FaAddressCard } from "react-icons/fa";
 import { VscAccount } from "react-icons/vsc";
 import { FiPackage } from "react-icons/fi";
 import { HiOutlineShoppingBag } from "react-icons/hi";
@@ -32,6 +32,11 @@ import { RiSurveyLine } from "react-icons/ri";
 import { AiOutlineSound } from "react-icons/ai";
 import { FiLogOut } from "react-icons/fi";
 import { Link } from "react-router-dom";
+import { Firebase } from "./../../config/firebase/firebase";
+import { ImUser, ImUsers } from "react-icons/im";
+
+
+const database = Firebase.database().ref("/");
 const drawerWidth = 240;
 
 const useStyles = makeStyles((theme) => ({
@@ -55,6 +60,7 @@ const useStyles = makeStyles((theme) => ({
     [theme.breakpoints.up("sm")]: {
       display: "none",
     },
+    color:'#fff'
   },
   // necessary for content to be below app bar
   toolbar: theme.mixins.toolbar,
@@ -77,6 +83,22 @@ function ResponsiveDrawer(props) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [anchorEl2, setAnchorEl2] = React.useState(null);
+  const [user, setUser] = useState(null);
+  useEffect(() => {
+    // Firebase.auth().onAuthStateChanged((firebaseUser) => {
+    //   if (firebaseUser) {
+    // database.child("Admins/" + "4Lvf3Eam26XLKHdI1ilD0Jp3yfg1").once("value", (res) => {
+    //   let user = res.val();
+    //   user.key = res.key;
+    //   setUser(user);
+    // });
+    //   }
+    // });
+
+    let userData = JSON.parse(localStorage.getItem("userData"));
+    setUser(userData);
+  }, []);
+  console.log("------------<<><><><><>>", user);
 
   const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
@@ -95,6 +117,18 @@ function ResponsiveDrawer(props) {
   const handleDrawerToggle = () => {
     setMobileOpen(!mobileOpen);
   };
+  const Handle_signOut = () => {
+    localStorage.removeItem("userData");
+    Firebase.auth()
+      .signOut()
+      .then(() => {
+        props.path.push("/");
+      })
+      .catch((error) => {
+        alert(error);
+      });
+  };
+  console.log(props.path);
 
   const drawer = (
     <div>
@@ -132,6 +166,15 @@ function ResponsiveDrawer(props) {
             </ListItem>
           </a>
         </Link>
+         {/* ===========================> <=========================== */}
+         <Link to="/AllUsers" className="link_none">
+          <a className="ml-1 link_color">
+            <ListItem button>
+              <ImUsers className="_drawer_icon" size={27} />
+              <div className="_drawerPageLInk">AllUsers</div>
+            </ListItem>
+          </a>
+        </Link>
         {/* ===========================> <=========================== */}
         <Link to="/Library" className="link_none">
           <a className="ml-1 link_color">
@@ -154,74 +197,18 @@ function ResponsiveDrawer(props) {
         <Link to="/AmenityBooking" className="link_none">
           <a className="ml-1 link_color">
             <ListItem button>
-              <FaCalendarAlt className="_drawer_icon" size={27} />
-              <div className="_drawerPageLInk">Amenity Booking</div>
+              <FaAddressCard className="_drawer_icon" size={27} />
+              <div className="_drawerPageLInk">Add User</div>
             </ListItem>
           </a>
         </Link>
+
         {/* ===========================> <=========================== */}
-        {/* <Link to="/MyAccount" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <VscAccount className="_drawer_icon" />
-              <div className="_drawerPageLInk">My Account</div>
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* ===========================> <=========================== */}
-        {/* <Link to="/Packages" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <FiPackage className="_drawer_icon" />
-              <div className="_drawerPageLInk">Packages</div>
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* ===========================> <=========================== */}
-        {/* <Link to="/Store" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <HiOutlineShoppingBag className="_drawer_icon" />
-              <div className="_drawerPageLInk">Store</div>
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* ===========================> <=========================== */}
-        {/* <Link to="/ClassifiedAds" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <BsFileEarmarkSpreadsheet className="_drawer_icon" />
-              <div className="_drawerPageLInk">Classified Ads</div>
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* ===========================> <=========================== */}
-        {/* <Link to="/Survey" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <RiSurveyLine className="_drawer_icon" />
-              <div className="_drawerPageLInk">Survey</div>
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* ===========================> <=========================== */}
-        {/* <Link to="/UserGuide" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <MdLiveHelp className="_drawer_icon" />
-              <div className="_drawerPageLInk">User Guide</div>
-            </ListItem>
-          </a>
-        </Link> */}
-        {/* ===========================> <=========================== */}
-        <Link to="/" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <FiLogOut className="_drawerlougout_icon" size={27} />
-              <div className="_drawerPageLInkLogout">Log Out</div>
-            </ListItem>
-          </a>
-        </Link>
+
+        <ListItem button onClick={() => Handle_signOut()}>
+          <FiLogOut className="_drawerlougout_icon" size={27} />
+          <div className="_drawerPageLInkLogout">Log Out</div>
+        </ListItem>
       </List>
     </div>
   );
@@ -237,7 +224,7 @@ function ResponsiveDrawer(props) {
       <AppBar position="fixed" className={classes.appBar}>
         <Toolbar style={{ backgroundColor: "#3C1874" }}>
           <IconButton
-            color="inherit"
+            color="red"
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
@@ -248,7 +235,7 @@ function ResponsiveDrawer(props) {
 
           {/* ===========================> <=========================== */}
           <div className="header_profile_main">
-            <div className="projec_tittle">Housing Management</div>
+            <div className="projec_tittle">{user && user.type}</div>
             <img
               src={ProfileImg}
               alt="Profile Image"
