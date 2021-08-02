@@ -6,10 +6,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import "./Announcement.css";
 import { AiOutlineSound } from "react-icons/ai";
 import TextField from "@material-ui/core/TextField";
-import FormControl from "@material-ui/core/FormControl";
-import Select from "@material-ui/core/Select";
-import InputLabel from "@material-ui/core/InputLabel";
-import MenuItem from "@material-ui/core/MenuItem";
 import Button from "@material-ui/core/Button";
 import AnnouncementTable from "./../../Components/AnnouncementTable/AnnouncementTable";
 import Snackbar from "@material-ui/core/Snackbar";
@@ -184,74 +180,6 @@ function Announcement(props) {
           <br />
           <div className={classes.root}>
             <Grid container spacing={1} justify="flex-end">
-              {/* ===========================> <=========================== */}
-              {/* <Grid item xs={12} sm={4}>
-                <TextField
-                  id="outlined-textarea"
-                  label="Search Announcements"
-                  placeholder="Search Announcements"
-                  variant="outlined"
-                  fullWidth
-                  type="text"
-                  autoComplete="Search Announcements"
-                  className="login_email_input"
-                  value={selectInput}
-                  onChange={handleSearchValue}
-                  focused={false}
-                />
-              </Grid> */}
-
-              {/* ===========================> <=========================== */}
-              {/* <Grid item xs={12} sm={4}>
-                <FormControl
-                  variant="outlined"
-                  className={classes.formControl}
-                  fullWidth
-                >
-                  <InputLabel id="demo-simple-select-outlined-label select_from_dropdown">
-                    Select Category
-                  </InputLabel>
-                  <Select
-                    labelId="demo-simple-select-outlined-label"
-                    id="demo-simple-select-outlined"
-                    value={selectCategory}
-                    onChange={handleChange}
-                    label="Select Category"
-                  >
-                    <MenuItem
-                      value="Current Announcements"
-                      className="login_dropdwon_value"
-                    >
-                      Current Announcements
-                    </MenuItem>
-                    <MenuItem
-                      value="Past Announcements"
-                      className="login_dropdwon_value"
-                    >
-                      Past Announcements
-                    </MenuItem>
-                    <MenuItem
-                      value="All Announcements"
-                      className="login_dropdwon_value"
-                    >
-                      All Announcements
-                    </MenuItem>
-                  </Select>
-                </FormControl>
-              </Grid> */}
-
-              {/* ===========================>  <=========================== */}
-              {/* <Grid item xs={12} sm={2}>
-                <Button
-                  variant="outlined"
-                  color="primary"
-                  fullWidth
-                  className="sing_btn_text"
-                  onClick={() => Search()}
-                >
-                  Search
-                </Button>
-              </Grid> */}
               {/* ===========================> <=========================== */}
               <Grid item xs={12} sm={2}>
                 <Button

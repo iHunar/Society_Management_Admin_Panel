@@ -1,11 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Navbar from "./../../Components/Navbar/Navbar";
 import { makeStyles } from "@material-ui/core/styles";
 import "./AmenityBooking.css";
 import Button from "@material-ui/core/Button";
-import { FaCalendarAlt ,FaAddressCard} from "react-icons/fa";
-import WhatsAppImg from "./../../img/whatsapp-new-policy.jpg";
-import { Link } from "react-router-dom";
+import { FaAddressCard } from "react-icons/fa";
 import Paper from "@material-ui/core/Paper";
 import TextField from "@material-ui/core/TextField";
 import Grid from "@material-ui/core/Grid";
@@ -14,7 +12,6 @@ import { HiCamera } from "react-icons/hi";
 import IconButton from "@material-ui/core/IconButton";
 import { Firebase } from "./../../config/firebase/firebase";
 import Alert from "@material-ui/lab/Alert";
-
 const database = Firebase.database().ref("/");
 const drawerWidth = 240;
 const useStyles = makeStyles((theme) => ({
@@ -56,13 +53,27 @@ function AmenityBooking(props) {
   const [iserror, setiserror] = React.useState(false);
   const [severity, setSeverity] = React.useState("error");
 
+ 
   console.log("==========================================", profilePic);
   const handle_change = (e) => {
     setiserror(false);
-    setinputValues({
-      ...inputValues,
-      [e.target.name]: e.target.value,
-    });
+    if (e.target.name === "number") {
+      setinputValues({
+        ...inputValues,
+        [e.target.name]: e.target.value.toString().slice(0, 11),
+      });
+    } else if (e.target.name === "cnic") {
+      setinputValues({
+        ...inputValues,
+        [e.target.name]: e.target.value.toString().slice(0, 13),
+      });
+    } else {
+      setinputValues({
+        ...inputValues,
+
+        [e.target.name]: e.target.value,
+      });
+    }
   };
   function handleUpload(e) {
     e.preventDefault();
@@ -112,13 +123,13 @@ function AmenityBooking(props) {
         .then((res) => {
           var user = res.user;
           database
-            .child("Alluser" + "/")
-            .push({
+            .child("Alluser/" + user.uid)
+            .set({
               email,
               name: inputValues.name,
               number: inputValues.number,
               cnic: inputValues.cnic,
-              image: upload_profile,
+              image: inputValues.image,
               uid: user.uid,
               securityCode: password,
             })
@@ -265,7 +276,12 @@ function AmenityBooking(props) {
                   </label>
                   <img
                     src={inputValues.image}
-                    style={{ width: 100, height: 100, borderRadius: 100 }}
+                    style={{
+                      width: 100,
+                      height: 100,
+                      borderRadius: 100,
+                      border: "5px solid #3C1874",
+                    }}
                   />
                 </div>
               </div>
@@ -336,6 +352,7 @@ function AmenityBooking(props) {
                 value={inputValues.cnic}
                 onChange={handle_change}
                 name="cnic"
+                inputProps={{}}
               />
               <br />
               <br />

@@ -74,7 +74,6 @@ function Events(props) {
       });
     });
   }, []);
-  console.log("event page====================", allEvents);
   const handle_change = (e) => {
     setnewInputValues({
       ...newInputValues,
@@ -150,11 +149,11 @@ function Events(props) {
       .child(`Events/${id}`)
       .remove()
       .then((res) => {
-        console.log("deleted", res);
+        // console.log("deleted", res);
         window.location.reload();
       })
       .catch((err) => {
-        console.log("err", err.message);
+        // console.log("err", err.message);
       });
   };
 
