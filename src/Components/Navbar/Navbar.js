@@ -85,16 +85,6 @@ function ResponsiveDrawer(props) {
   const [anchorEl2, setAnchorEl2] = React.useState(null);
   const [user, setUser] = useState(null);
   useEffect(() => {
-    // Firebase.auth().onAuthStateChanged((firebaseUser) => {
-    //   if (firebaseUser) {
-    // database.child("Admins/" + "4Lvf3Eam26XLKHdI1ilD0Jp3yfg1").once("value", (res) => {
-    //   let user = res.val();
-    //   user.key = res.key;
-    //   setUser(user);
-    // });
-    //   }
-    // });
-
     let userData = JSON.parse(localStorage.getItem("userData"));
     setUser(userData);
   }, []);
@@ -176,14 +166,7 @@ function ResponsiveDrawer(props) {
           </a>
         </Link>
         {/* ===========================> <=========================== */}
-        <Link to="/Library" className="link_none">
-          <a className="ml-1 link_color">
-            <ListItem button>
-              <MdLocalLibrary className="_drawer_icon" size={27} />
-              <div className="_drawerPageLInk">Library</div>
-            </ListItem>
-          </a>
-        </Link>
+      
         {/* ===========================> <=========================== */}
         <Link to="/ServiceRequest" className="link_none">
           <a className="ml-1 link_color">

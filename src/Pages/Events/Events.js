@@ -68,12 +68,14 @@ function Events(props) {
       events.push(event);
       setallEvents(events);
       let user = JSON.parse(localStorage.getItem("userData"));
+      console.log("user", user);
       setnewInputValues({
         ...newInputValues,
         userAs: user.type,
       });
     });
   }, []);
+  console.log("==========================value ", newInputValues);
   const handle_change = (e) => {
     setnewInputValues({
       ...newInputValues,
@@ -114,11 +116,13 @@ function Events(props) {
     setSearchEvents(event.target.value);
   };
   const sendEvent = () => {
+    console.log(newInputValues);
     database
       .child("Events" + "/")
       .push(newInputValues)
       .then((res) => {
         setnewInputValues({
+          ...newInputValues,
           eventTittle: "",
           eventDate: "",
           eventDes: "",
@@ -173,9 +177,9 @@ function Events(props) {
           <br />
           <br />
           <div className={classes.root}>
-            <Grid container spacing={1} justify='flex-end'>
+            <Grid container spacing={1} justify="flex-end">
               {/* ===========================> <=========================== */}
-                <Grid item xs={12} sm={2}>
+              <Grid item xs={12} sm={2}>
                 <Button
                   variant="outlined"
                   color="primary"

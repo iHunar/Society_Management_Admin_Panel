@@ -171,7 +171,10 @@ class Home extends React.Component {
                         <div>
                           <Grid container spacing={3} alignItems="center">
                             <Grid item xs={12} sm={12} xl={12} lg={12}>
-                              <Paper style={{ padding: "10px" }} elevation={5}>
+                              <Paper
+                                style={{ padding: "10px", marginTop: 10 }}
+                                elevation={5}
+                              >
                                 <div className="home_page_card_main">
                                   <div style={{ flex: 1 }}>
                                     <Grid container alignItems="center">
@@ -238,7 +241,10 @@ class Home extends React.Component {
                         <div>
                           <Grid container spacing={3} alignItems="center">
                             <Grid item xs={12} sm={6} xl={12} lg={12}>
-                              <Paper style={{ padding: "10px" }} elevation={5}>
+                              <Paper
+                                style={{ padding: "10px", marginTop: 10 }}
+                                elevation={5}
+                              >
                                 <div className="home_page_card_main">
                                   <div style={{ flex: 1 }}>
                                     <Grid container alignItems="center">

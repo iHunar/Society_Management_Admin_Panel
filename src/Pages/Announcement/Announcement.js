@@ -56,6 +56,8 @@ function Announcement(props) {
   const [userData, setuserData] = useState("");
 
   useEffect(() => {
+
+
     var announcements = [];
     database.child("Announcements/").on("child_added", (res) => {
       let announcement = res.val();
