@@ -22,7 +22,6 @@ import UserGuide from './../Pages/UserGuide/UserGuide';
 import ServiceRequestDetails from './../Pages/ServiceRequest/ServiceRequestDetails';
 import AmenityBookingDetails from './../Pages/AmenityBooking/AmenityBookingDetails'
 import AllUsers from './../Pages/allUsers/allUsers'
-import Signup from './../Pages/signup/signup'
 class Router extends Component {
   render() {
     return (
@@ -30,7 +29,6 @@ class Router extends Component {
         <div className="App-intro">
           <Switch>
             <Route exact path="/" component={Login} />
-            <Route path="/Signup" component={Signup} />
             <Route path="/Home" component={Home} />
             <Route path="/Announcement" component={Announcement} />
             <Route path="/Events" component={Events} />
